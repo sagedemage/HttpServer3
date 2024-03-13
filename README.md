@@ -1,5 +1,7 @@
 # HttpServer3
 
+HTTP server written in java.
+
 Compile and run the program
 ```
 mvn compile
