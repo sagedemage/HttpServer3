@@ -33,11 +33,13 @@ public class Server {
     public void start(int port) {
         /* Start the server */
         try {
+            // Listen for connections
             serverSocket = new ServerSocket(port);
             String host_address = serverSocket.getInetAddress().getHostAddress();
             System.out.println("Server listening on http://" + host_address + ":" + serverSocket.getLocalPort());
 
             while (true) {
+                // Accept for connections
                 Socket clientSocket = serverSocket.accept();
                 out = clientSocket.getOutputStream();
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
