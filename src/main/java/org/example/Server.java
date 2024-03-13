@@ -31,6 +31,7 @@ public class Server {
 
 
     public void start(int port) {
+        /* Start the server */
         try {
             serverSocket = new ServerSocket(port);
             String host_address = serverSocket.getInetAddress().getHostAddress();
@@ -87,6 +88,7 @@ public class Server {
     }
 
     public void close() {
+        /* Close the server's variables */
         try {
             in.close();
             out.close();
@@ -98,6 +100,7 @@ public class Server {
     }
 
     public String readHtmlFile(String path) {
+        /* Read the html file as a String */
         File myObj = new File(path);
         try {
             Scanner myReader = new Scanner(myObj);
@@ -115,6 +118,7 @@ public class Server {
     }
 
     public byte[] readImageFile(String path) {
+        /* Read the image file in bytes */
         try {
             BufferedImage img = ImageIO.read(new File(path));
 
@@ -130,6 +134,7 @@ public class Server {
     }
 
     public void printCodeError(StackTraceElement[] stackTraceElement) {
+        /* Make it easier for devs to find where the error occurred */
         for (StackTraceElement stack : stackTraceElement) {
             if (stack.toString().contains("Server.java")) {
                 System.out.println("at ".concat(stack.toString()));
