@@ -51,10 +51,10 @@ public class Server {
                 String[] route_items = route_line.split(" ");
                 String route = "static".concat(route_items[1]);
 
-                String html_ext = route.substring(route.length()-5);
-                String ico_ext = route.substring(route.length()-4);
+                String route_html_ext = route.substring(route.length()-5);
+                String route_ico_ext = route.substring(route.length()-4);
 
-                if (!html_ext.equals(".html") && !ico_ext.equals(".ico") && route.charAt(route.length()-1) != '/') {
+                if (!route_html_ext.equals(".html") && !route_ico_ext.equals(".ico") && route.charAt(route.length()-1) != '/') {
                    route = route.concat("/");
                 }
 
@@ -64,7 +64,9 @@ public class Server {
 
                 String file_path = findRequestedFile(route, "static");
 
-                if (file_path.equals("static/favicon.ico")) {
+                String file_path_ico_ext = file_path.substring(route.length()-4);
+
+                if (file_path_ico_ext.equals(".ico")) {
                     byte[] res_header_buf = "HTTP/1.1 200 OK\n\n".getBytes();
                     byte[] img_buf = readImageFile(file_path);
 
